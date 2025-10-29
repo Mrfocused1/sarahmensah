@@ -11,18 +11,50 @@ export default function LoadingPage({ onLoadingComplete }: LoadingPageProps) {
   const [progress, setProgress] = useState(0)
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(interval)
-          setTimeout(() => onLoadingComplete(), 500)
-          return 100
-        }
-        return prev + 2
-      })
-    }, 30)
+    const assets = [
+      // Hero images
+      '/images/Generated Image October 29, 2025 - 6_17PM.png',
+      '/images/Generated Image October 29, 2025 - 6_55PM.png',
+      // Journey preview images
+      '/images/journey/congo.png',
+      '/images/journey/london.png',
+      '/images/Generated Image October 29, 2025 - 7_00PM.png',
+      '/images/Generated Image October 29, 2025 - 7_03PM.png',
+      // Videos
+      '/images/charity.mp4',
+      '/images/vid01.mp4',
+    ]
 
-    return () => clearInterval(interval)
+    let loadedCount = 0
+    const totalAssets = assets.length
+
+    const updateProgress = () => {
+      loadedCount++
+      const newProgress = Math.round((loadedCount / totalAssets) * 100)
+      setProgress(newProgress)
+
+      if (loadedCount === totalAssets) {
+        setTimeout(() => onLoadingComplete(), 500)
+      }
+    }
+
+    // Preload images
+    assets.forEach((src) => {
+      if (src.endsWith('.mp4')) {
+        // Preload video
+        const video = document.createElement('video')
+        video.preload = 'auto'
+        video.onloadeddata = updateProgress
+        video.onerror = updateProgress // Continue even if video fails
+        video.src = src
+      } else {
+        // Preload image
+        const img = new Image()
+        img.onload = updateProgress
+        img.onerror = updateProgress // Continue even if image fails
+        img.src = src
+      }
+    })
   }, [onLoadingComplete])
 
   const tagline = 'Resilience & Leadership Speaker'
