@@ -236,7 +236,7 @@ export default function TestimonialsSection() {
                       <Quote className="w-10 h-10 text-black/40" />
                     </motion.div>
                     <p className="text-base md:text-lg text-black leading-relaxed italic font-medium">
-                      "{testimonial.quote}"
+                      &quot;{testimonial.quote}&quot;
                     </p>
                     <motion.div
                       initial={{ opacity: 0 }}

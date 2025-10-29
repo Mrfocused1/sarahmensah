@@ -83,7 +83,7 @@ export default function BookingForm() {
                   Thank You!
                 </h3>
                 <p className="text-lg text-green-700">
-                  Your inquiry has been received. We'll get back to you within 24
+                  Your inquiry has been received. We&apos;ll get back to you within 24
                   hours to discuss bringing Sarah to your event.
                 </p>
               </div>

@@ -103,8 +103,8 @@ export default function JourneySection() {
               transition={{ duration: 1, delay: 1 }}
               className="text-2xl md:text-3xl font-light text-primary italic"
             >
-              "Every setback was a setup for a comeback. Every challenge, a
-              classroom. Every barrier, a breakthrough waiting to happen."
+              &quot;Every setback was a setup for a comeback. Every challenge, a
+              classroom. Every barrier, a breakthrough waiting to happen.&quot;
             </motion.p>
             <motion.p
               initial={{ opacity: 0, y: 10 }}
